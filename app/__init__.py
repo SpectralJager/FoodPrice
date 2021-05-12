@@ -1,7 +1,10 @@
 from flask import Flask
 from flask_migrate import Migrate
+from flask_cors import CORS
 from .models import db
 from .api_v1_routes import api_v1
+from .app_routes import app_router
+
 
 def create_app():
     app = Flask(__name__)
@@ -15,6 +18,7 @@ def create_app():
 
     # reg blueprints
     app.register_blueprint(api_v1)
+    app.register_blueprint(app_router)
 
     return app
 
@@ -22,3 +26,4 @@ def create_app():
 def register_extensions(app):
     db.init_app(app)
     migrate = Migrate(app, db)
+    CORS(app, resources={r'/*': {'origins': '*'}})

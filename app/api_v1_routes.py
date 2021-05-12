@@ -6,16 +6,16 @@ api_v1 = Blueprint('api_v1', __name__, url_prefix='/api_v1')
 
 @api_v1.route('/products', methods=['GET', 'POST'])
 def products():
-    response = {'message': 'Incorect request method!', 'code': 500}
+    response = {'message': 'Incorect request method!', 'code': 'danger'}
     if request.method == 'GET':
         products = Product.query.all()
         if products:
             response = {
                 'products': [product.json() for product in products],
-                'code': 200
+                'code': 'success'
             }
         else:
-            response = {'message': 'No products', 'code': 400}
+            response = {'message': 'No products', 'code': 'warning'}
 
     elif request.method == 'POST':
         name = request.json['name']
@@ -29,7 +29,7 @@ def products():
 
         response = {
             'message': 'Product with name %r added!' % name,
-            'code': 200
+            'code': 'success'
         }
     return response
 
@@ -39,7 +39,7 @@ def product(id):
     try:
         product = Product.query.get(id)
         if request.method == 'GET':
-            response = {'product': product.json(), 'code': 200}
+            response = {'product': product.json(), 'code': 'success'}
 
         elif request.method == 'PUT':
             product.name = request.json['name']
@@ -50,7 +50,7 @@ def product(id):
             # create responce
             response = {
                 'message': 'Product %r with name %r have updated!' % (product.id, product.name), 
-                'code': 200
+                'code': 'success'
             }
         elif request.method == 'DELETE':
             name = product.name
@@ -63,20 +63,20 @@ def product(id):
                 'code': 200
             }
     except:
-        response = {'message': 'Incorect request!', 'code': 500}
+        response = {'message': 'Incorect request!', 'code': 'danger'}
     return response
 
 
 @api_v1.route('/products/<int:product_id>/items', methods=['GET', 'POST'])
 def product_items(product_id):
     product = Product.query.get(product_id)
-    response = {'message': 'Incorect request method!', 'code': 500}
+    response = {'message': 'Incorect request method!', 'code': 'danger'}
     if request.method == 'GET':
         items = product.items
         if items:
-            response = {'items': [item.json() for item in items], 'code': 200}
+            response = {'items': [item.json() for item in items], 'code': 'success'}
         else:
-            response = {'message': 'No items', 'code': 400}
+            response = {'message': 'No items', 'code': 'warning'}
 
     elif request.method == 'POST':
         name = request.json['name']
@@ -88,7 +88,7 @@ def product_items(product_id):
 
         db.session.commit()
 
-        response = {'message': 'Item with name %r added!' % name, 'code': 200}
+        response = {'message': 'Item with name %r added!' % name, 'code': 'success'}
     return response
 
 
@@ -107,17 +107,17 @@ def product_item(product_id, id):
 
             db.session.commit()
             
-            response = {'message': 'Product %r with name %r have updated!' % (item.id, item.name), 'code': 200}
+            response = {'message': 'Product %r with name %r have updated!' % (item.id, item.name), 'code': 'success'}
         
         elif request.method == 'DELETE':
             name = item.name
             db.session.delete(item)
             db.session.commit()
 
-            response = {'message': 'Product with name %r have deleted!' % name, 'code': 200}
+            response = {'message': 'Product with name %r have deleted!' % name, 'code': 'success'}
 
     except:
-        response = {'message': 'Incorect request!', 'code': 500}
+        response = {'message': 'Incorect request!', 'code': 'danger'}
      
     return response
 
