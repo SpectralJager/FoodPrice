@@ -1,5 +1,5 @@
 <template>
-  <div class="card-list">
+  <div class="card--list">
     <Card v-for="(category, index) in categories" :key="index" :category="category"/>
   </div>
 </template>
@@ -71,7 +71,7 @@ export default {
         {
           name: 'Sushi',
           description: 'Cillum laboris occaecat commodo consequat dolore aute culpa fugiat. Consequat ullamco aliquip minim dolore minim. Occaecat adipisicing anim elit ea ullamco pariatur non laborum est. Fugiat culpa velit do voluptate proident excepteur do officia occaecat do sit.',
-          img_bg_url: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cGl6emF8ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60',
+          img_bg_url: 'https://images.unsplash.com/photo-1579871494447-9811cf80d66c?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8c3VzaGl8ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60',
           products: [
 
           ]
@@ -79,7 +79,7 @@ export default {
         {
           name: 'Burger',
           description: 'Cillum laboris occaecat commodo consequat dolore aute culpa fugiat. Consequat ullamco aliquip minim dolore minim. Occaecat adipisicing anim elit ea ullamco pariatur non laborum est. Fugiat culpa velit do voluptate proident excepteur do officia occaecat do sit.',
-          img_bg_url: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cGl6emF8ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60',
+          img_bg_url: 'https://images.unsplash.com/photo-1571091718767-18b5b1457add?ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8YnVyZ2VyfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60',
           products: [
 
           ]
@@ -90,5 +90,12 @@ export default {
 }
 </script>
 <style lang="scss">
-
+.card--list{
+  margin: 5rem auto;
+  width: 80%;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px,1fr));
+  gap: 1rem;
+  justify-items: center;
+}
 </style>

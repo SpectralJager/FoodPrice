@@ -1,4 +1,5 @@
 <template>
+<div class="container">
   <div class="info">
     <img :src="category.img_bg_url" alt="">
     <h1 class="info--title">{{category.name}}</h1>
@@ -7,6 +8,7 @@
   <div class="product-list">
     <Product v-for="(product, index) in category.products" :key="index" :product="product"/>
   </div>
+</div>
 </template>
 
 <script>
@@ -80,6 +82,33 @@ export default {
 }
 </script>
 
-<style>
-
+<style lang="scss">
+.container{
+  margin: 5% auto;
+  width: 80%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 1rem;
+  .info{
+    position: sticky;
+    top: 0;
+    img{
+      width: 100%;
+      margin-bottom: 1rem;
+    }
+    &--title{
+      font-size: 5rem;
+      margin-bottom: 1rem;
+    }
+    &--description{
+      font-size: 1.5rem;
+    }
+  }
+  .product-list{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 1rem;
+  }
+}
 </style>

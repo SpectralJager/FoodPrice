@@ -15,12 +15,6 @@ const routes = [
     component: Category,
     props: true,
   },
-  {
-    path: '/admin',
-    name: 'Admin',
-    component: Admin
-  },
-  
 ]
 
 const router = createRouter({
