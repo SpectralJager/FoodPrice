@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Home from '../views/Home.vue'
-import Panel from '../views/Panel.vue'
+import Category from '../views/Category.vue'
+import Admin from '../views/Admin.vue'
 
 const routes = [
   {
@@ -9,10 +10,17 @@ const routes = [
     component: Home
   },
   {
-    path: '/panel',
-    name: 'Panel',
-    component: Panel
+    path: '/:category_id',
+    name: 'Category',
+    component: Category,
+    props: true,
   },
+  {
+    path: '/admin',
+    name: 'Admin',
+    component: Admin
+  },
+  
 ]
 
 const router = createRouter({
